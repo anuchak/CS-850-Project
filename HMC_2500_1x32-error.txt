@@ -1,0 +1,44 @@
+Error received while doing 1,000,000 murmur Hash computations on HMC_2500_1x32
+
+
+src/mem/ruby/system/Sequencer.cc:240: panic: Possible Deadlock detected. Aborting!
+ version: 2 request.paddr: 0x4a400 m_readRequestTable: 1 current time: 100611346000 issue_time: 100356082500 difference: 255263500
+Memory Usage: 2673984 KBytes
+Program aborted at tick 100611346000
+--- BEGIN LIBC BACKTRACE ---
+./build/GCN3_X86/gem5.opt(+0xaa5ed0)[0x560008db3ed0]
+./build/GCN3_X86/gem5.opt(+0xacbeee)[0x560008dd9eee]
+/lib/x86_64-linux-gnu/libpthread.so.0(+0x14420)[0x7f223b1f9420]
+/lib/x86_64-linux-gnu/libc.so.6(gsignal+0xcb)[0x7f223a3c500b]
+/lib/x86_64-linux-gnu/libc.so.6(abort+0x12b)[0x7f223a3a4859]
+./build/GCN3_X86/gem5.opt(+0x4d93c5)[0x5600087e73c5]
+./build/GCN3_X86/gem5.opt(+0x1b90c89)[0x560009e9ec89]
+./build/GCN3_X86/gem5.opt(+0xababe2)[0x560008dc8be2]
+./build/GCN3_X86/gem5.opt(+0xae7330)[0x560008df5330]
+./build/GCN3_X86/gem5.opt(+0xae79b3)[0x560008df59b3]
+./build/GCN3_X86/gem5.opt(+0x1dac3f2)[0x56000a0ba3f2]
+./build/GCN3_X86/gem5.opt(+0x4eb9a6)[0x5600087f99a6]
+/lib/x86_64-linux-gnu/libpython3.8.so.1.0(+0x2a8748)[0x7f223b4b2748]
+/lib/x86_64-linux-gnu/libpython3.8.so.1.0(_PyEval_EvalFrameDefault+0x8dd8)[0x7f223b287f48]
+/lib/x86_64-linux-gnu/libpython3.8.so.1.0(_PyEval_EvalCodeWithName+0x8fb)[0x7f223b3d4e4b]
+/lib/x86_64-linux-gnu/libpython3.8.so.1.0(_PyFunction_Vectorcall+0x94)[0x7f223b4b2124]
+/lib/x86_64-linux-gnu/libpython3.8.so.1.0(+0x74d6d)[0x7f223b27ed6d]
+/lib/x86_64-linux-gnu/libpython3.8.so.1.0(_PyEval_EvalFrameDefault+0x7d86)[0x7f223b286ef6]
+/lib/x86_64-linux-gnu/libpython3.8.so.1.0(_PyEval_EvalCodeWithName+0x8fb)[0x7f223b3d4e4b]
+/lib/x86_64-linux-gnu/libpython3.8.so.1.0(PyEval_EvalCodeEx+0x42)[0x7f223b3d51d2]
+/lib/x86_64-linux-gnu/libpython3.8.so.1.0(PyEval_EvalCode+0x1f)[0x7f223b3d55bf]
+/lib/x86_64-linux-gnu/libpython3.8.so.1.0(+0x1cfc01)[0x7f223b3d9c01]
+/lib/x86_64-linux-gnu/libpython3.8.so.1.0(+0x25f547)[0x7f223b469547]
+/lib/x86_64-linux-gnu/libpython3.8.so.1.0(+0x74d6d)[0x7f223b27ed6d]
+/lib/x86_64-linux-gnu/libpython3.8.so.1.0(_PyEval_EvalFrameDefault+0x12fd)[0x7f223b28046d]
+/lib/x86_64-linux-gnu/libpython3.8.so.1.0(+0x8006b)[0x7f223b28a06b]
+/lib/x86_64-linux-gnu/libpython3.8.so.1.0(PyVectorcall_Call+0x60)[0x7f223b4b2840]
+./build/GCN3_X86/gem5.opt(+0xacc544)[0x560008dda544]
+./build/GCN3_X86/gem5.opt(+0x47a3fe)[0x5600087883fe]
+/lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xf3)[0x7f223a3a6083]
+./build/GCN3_X86/gem5.opt(+0x4d3d2e)[0x5600087e1d2e]
+--- END LIBC BACKTRACE ---
+For more info on how to address this issue, please visit https://www.gem5.org/documentation/general_docs/common-errors/ 
+
+Aborted (core dumped)
+
