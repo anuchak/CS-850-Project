@@ -60,7 +60,6 @@ __global__ void decompress_func(hipLaunchKernelStruct_1 *packedMetadata,
     case 7:
       memcpy(&temp, byte_input + index, 7);
       index += 7;
-      byte_output[i] = temp;
       break;
     default:
       if (metadata.trailing_zeros < 8) {
