@@ -23,13 +23,14 @@ typedef struct packed_metadata {
 
 __global__ void decompress_func(hipLaunchKernelStruct_1 *packedMetadata,
                                 uint8_t *byte_input, uint64_t *byte_output,
-                                size_t N) {
-  size_t offset = (hipBlockIdx_x * hipBlockDim_x + hipThreadIdx_x);
-  size_t stride = hipBlockDim_x * hipGridDim_x;
-
+                                size_t total_column_segments,
+                                size_t column_segment_size) {
+  size_t offset = (hipBlockIdx_x * hipBlockDim_x + hipThreadIdx_x) % total_column_segments;
+  size_t final_idx = max(total_column_segments * column_segment_size, (offset + 1) * column_segment_size);
+  
   uint64_t prevVal = 0u;
   uint64_t index = 0u;
-  for (auto i = offset; i < N; i = i + stride) {
+  for (auto i = offset * column_segment_size; i < final_idx; i++) {
     auto metadata = packedMetadata[i];
     uint64_t temp = 0;
     switch (metadata.significant_bytes) {
