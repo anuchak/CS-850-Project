@@ -28,11 +28,11 @@ THE SOFTWARE.
     }\
 }
 /*
- * Square each element in the array A and write to array C.
+ * Compute murmur64 hash of each element in the array A and write to array C.
  */
 template <typename T>
 __global__ void
-vector_square(T *C_d, const T *A_d, size_t N)
+hashCompute(T *C_d, const T *A_d, size_t N)
 {
     size_t offset = (hipBlockIdx_x * hipBlockDim_x + hipThreadIdx_x);
     size_t stride = hipBlockDim_x * hipGridDim_x ;
@@ -67,10 +67,10 @@ int main(int argc, char *argv[])
     }
     const unsigned blocks = 512;
     const unsigned threadsPerBlock = 256;
-    printf ("info: launch 'vector_square' kernel\n");
+    printf ("info: launch 'hashCompute' kernel\n");
     auto duration = std::chrono::system_clock::now().time_since_epoch();
     auto millis = std::chrono::duration_cast<std::chrono::microseconds>(duration).count();
-    hipLaunchKernelGGL(vector_square, dim3(blocks), dim3(threadsPerBlock), 0, 0, C_h, A_h, N);
+    hipLaunchKernelGGL(hashCompute, dim3(blocks), dim3(threadsPerBlock), 0, 0, C_h, A_h, N);
     hipDeviceSynchronize();
     auto duration1 = std::chrono::system_clock::now().time_since_epoch();
     auto millis1 = std::chrono::duration_cast<std::chrono::microseconds>(duration1).count();
